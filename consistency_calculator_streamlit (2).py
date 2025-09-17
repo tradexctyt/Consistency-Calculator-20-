@@ -21,7 +21,7 @@ with col2:
 
 # Account sizes for scenario table
 st.subheader("🏷️ Account sizes for scenario calculations")
-accounts = st.multiselect("Pick account sizes to display", [10000, 25000, 50000, 100000, 200000], default=[10000,25000,100000,200000])
+accounts = st.multiselect("Pick account sizes to display", [10000, 25000, 50000, 100000, 200000, 50000], default=[10000,25000,100000,200000])
 
 # Add / input daily profits
 st.subheader("➕ Enter Daily Profits")
