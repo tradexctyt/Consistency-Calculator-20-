@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Consistency Calculator (Flexible %)", page_icon="📊", layout="centered")
+st.set_page_config(page_title="Consistency Calculator By TradeX", page_icon="🃏", layout="centered")
 
 st.title("📊 Consistency Calculator — flexible % & account sizes")
 st.write(
