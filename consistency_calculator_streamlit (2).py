@@ -5,13 +5,20 @@ st.set_page_config(page_title="20% Consistency Calculator", page_icon="📊", la
 st.title("📊 20% Consistency Calculator")
 st.write(
     "Check if your trading profits meet the **20% consistency rule**.\n\n"
-    "Enter your daily profits below. The calculator will tell you if you're "
-    "eligible to withdraw and how much more profit you need if you're not consistent yet."
+    "Enter your daily profits and choose your timeframe (Weekly, Biweekly, Monthly). "
+    "The calculator will check if you are consistent and eligible to withdraw."
 )
 
 # Store daily profits in session state
 if "profits" not in st.session_state:
     st.session_state.profits = [0.0]
+
+# Select timeframe
+timeframe = st.radio(
+    "📅 Select Timeframe",
+    ("Weekly (7 days)", "Biweekly (14 days)", "Monthly (30 days)"),
+    horizontal=True
+)
 
 # Function to add a new day
 def add_day():
@@ -26,15 +33,26 @@ for i in range(len(st.session_state.profits)):
 
 st.button("Add Another Day", on_click=add_day)
 
+# Determine period length
+if "Weekly" in timeframe:
+    period_length = 7
+elif "Biweekly" in timeframe:
+    period_length = 14
+else:
+    period_length = 30
+
+# Trim profits to the chosen period
+profits = st.session_state.profits[:period_length]
+
 # Calculations
-total_profit = sum(st.session_state.profits)
-biggest_day = max(st.session_state.profits) if st.session_state.profits else 0
+total_profit = sum(profits)
+biggest_day = max(profits) if profits else 0
 max_allowed = total_profit * 0.20
 consistent = biggest_day <= max_allowed
 
 # Display results
 st.subheader("📈 Results")
-st.write(f"📊 **Total Profit:** ${total_profit:,.2f}")
+st.write(f"📊 **Total Profit ({timeframe}):** ${total_profit:,.2f}")
 st.write(f"📈 **Biggest Day Profit:** ${biggest_day:,.2f}")
 st.write(f"✅ **Max Allowed (20%):** ${max_allowed:,.2f}")
 
