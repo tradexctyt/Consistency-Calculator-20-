@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Consistency Calculator By TradeX", page_icon="🃏", layout="centered")
 
-st.title(" 🃏 Consistency Calculator")
+st.title(" 🃏 Consistency Calculator 🃏 ")
 st.write(
     "Enter your daily profits and choose timeframe, consistency % and account sizes. The app now supports 20%, 40% and 50% consistency checks and shows recommended daily targets for common account sizes."
 )
